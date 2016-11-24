@@ -155,6 +155,7 @@
     <Compile Include="Util\DMLibTestHelper.cs" />
     <Compile Include="Util\DMLibTestConstants.cs" />
     <Compile Include="Util\Helpers.cs" />
+    <Compile Include="Util\SASGenerator.cs" />
     <Compile Include="Util\TestAccounts.cs" />
     <Compile Include="@(GeneratedSourceFile)" Condition=" '$(Mode)' == 'Full' " />
   </ItemGroup>

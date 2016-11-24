@@ -187,7 +187,7 @@ namespace Microsoft.WindowsAzure.Storage.DataMovement
             catch (AggregateException e)
             {
                 StorageException innnerException = e.Flatten().InnerExceptions[0] as StorageException;
-                if (!Utils.IsExpectedHttpStatusCodes(innnerException, HttpStatusCode.Forbidden))
+                if (!Utils.IsExpectedHttpStatusCodes(innnerException, HttpStatusCode.Forbidden, HttpStatusCode.NotFound))
                 {
                     throw;
                 }
