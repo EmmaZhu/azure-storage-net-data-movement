@@ -278,6 +278,13 @@ namespace Microsoft.WindowsAzure.Storage.DataMovement.TransferControllers
                 "Current state is {0}",
                 this.state);
 
+            if (this.SharedTransferData.TotalLength <= this.Scheduler.TransferOptions.BlockSize)
+            {
+                this.state = State.Commit;
+                this.hasWork = true;
+                return;
+            }
+
             TransferData transferData = this.GetFirstAvailable();
 
             if (null != transferData)
@@ -335,12 +342,48 @@ namespace Microsoft.WindowsAzure.Storage.DataMovement.TransferControllers
             BlobRequestOptions blobRequestOptions = Utils.GenerateBlobRequestOptions(this.destLocation.BlobRequestOptions);
             OperationContext operationContext = Utils.GenerateOperationContext(this.Controller.TransferContext);
 
-            await this.blockBlob.PutBlockListAsync(
-                        this.blockIdSequence,
-                        Utils.GenerateConditionWithCustomerCondition(this.destLocation.AccessCondition),
-                        blobRequestOptions,
-                        operationContext,
-                        this.CancellationToken);
+            if ((0 != this.SharedTransferData.TotalLength) && (this.SharedTransferData.TotalLength <= this.Scheduler.TransferOptions.BlockSize))
+            {
+                TransferData transferData = this.GetFirstAvailable();
+
+                if (null != transferData)
+                {
+                    using (transferData)
+                    {
+                        transferData.Stream = new MemoryStream(transferData.MemoryBuffer, 0, transferData.Length);
+
+                        await this.blockBlob.UploadFromStreamAsync(
+                            transferData.Stream,
+                            transferData.Length,
+                            Utils.GenerateConditionWithCustomerCondition(this.destLocation.AccessCondition, true),
+                            Utils.GenerateBlobRequestOptions(this.destLocation.BlobRequestOptions),
+                            Utils.GenerateOperationContext(this.Controller.TransferContext),
+                            this.CancellationToken);
+                    }
+
+                    lock (this.SharedTransferData.TransferJob.CheckPoint.TransferWindowLock)
+                    {
+                        this.SharedTransferData.TransferJob.CheckPoint.TransferWindow.Remove(transferData.StartOffset);
+                    }
+
+                    this.Controller.UpdateProgressAddBytesTransferred(transferData.Length);
+                }
+                else
+                {
+                    this.hasWork = true;
+                    return;
+                }
+            }
+            else
+            {
+
+                await this.blockBlob.PutBlockListAsync(
+                            this.blockIdSequence,
+                            Utils.GenerateConditionWithCustomerCondition(this.destLocation.AccessCondition),
+                            blobRequestOptions,
+                            operationContext,
+                            this.CancellationToken);
+            }
 
             // REST API PutBlockList cannot clear existing Content-Type of block blob, so if it's needed to clear existing
             // Content-Type, REST API SetBlobProperties must be called explicitly:
