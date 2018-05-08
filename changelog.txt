@@ -1,3 +1,5 @@
+Just a test release
+
 2018.02.10 Version 0.7.1
  * All Services on both .Net Framework and .Net Core
    - Upgraded azure storage client library to 9.0.0 
