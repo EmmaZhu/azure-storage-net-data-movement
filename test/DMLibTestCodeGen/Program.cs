@@ -44,13 +44,20 @@ namespace DMLibTestCodeGen
 
             Assembly assembly = Assembly.LoadFrom(dllName);
 
-            foreach (Type type in assembly.GetTypes())
+            try
             {
-                if (null != type.GetCustomAttribute(typeof(MultiDirectionTestClassAttribute)))
+                foreach (Type type in assembly.GetTypes())
                 {
-                    MultiDirectionTestClass testClass = new MultiDirectionTestClass(type);
-                    codeGen.GenerateSourceCode(testClass);
+                    if (null != type.GetCustomAttribute(typeof(MultiDirectionTestClassAttribute)))
+                    {
+                        MultiDirectionTestClass testClass = new MultiDirectionTestClass(type);
+                        codeGen.GenerateSourceCode(testClass);
+                    }
                 }
+            }
+            catch (ReflectionTypeLoadException ex)
+            {
+                Console.WriteLine(ex.LoaderExceptions[0]);
             }
         }
 
