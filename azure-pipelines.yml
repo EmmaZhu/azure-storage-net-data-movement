@@ -42,9 +42,3 @@ steps:
   inputs:
     filename: '.\netcore\Build.cmd'
     arguments: '$(buildConfiguration)'
-
-- task: PublishPipelineArtifact@1
-  inputs:
-    targetPath: '$(Pipeline.Workspace)'
-    publishLocation: 'filepath'
-    fileSharePath: '\\dmshbld\Temp\emma\DMLib'
