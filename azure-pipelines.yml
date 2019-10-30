@@ -42,19 +42,7 @@ steps:
       Enable-AzureRmAlias
       $account=Get-AzStorageAccount -ResourceGroupName DMBuild -Name dmlibbuild
       Get-AzureStorageContainer -Context $account.Context
-      
-      $source = "$(Build.SourcesDirectory)\netcore\DMLibTest\bin\$(buildConfiguration)\netcoreapp2.0\publish"
-      
-      $destination = ".\DMLib_NetCore_0.zip"
-      
-       If(Test-path $destination) {Remove-item $destination}
-      
-      Add-Type -assembly "system.io.compression.filesystem"
-      
-      [io.compression.zipfile]::CreateFromDirectory($Source, $destination) 
-      
-      Set-AzStorageBlobContent -File $destination -Container master -Blob $destination -Context $account.Context
-      
+
       $source = "$(Build.SourcesDirectory)\test\DMLibTest\bin\$(buildConfiguration)"
       
       $destination = ".\DMLib_0.zip"
@@ -66,4 +54,17 @@ steps:
       [io.compression.zipfile]::CreateFromDirectory($Source, $destination) 
       
       Set-AzStorageBlobContent -File $destination -Container master -Blob $destination -Context $account.Context
+
+      $source = "$(Build.SourcesDirectory)\netcore\DMLibTest\bin\$(buildConfiguration)\netcoreapp2.0\publish"
+      
+      $destination = ".\DMLib_NetCore_0.zip"
+      
+       If(Test-path $destination) {Remove-item $destination}
+      
+      Add-Type -assembly "system.io.compression.filesystem"
+      
+      [io.compression.zipfile]::CreateFromDirectory($Source, $destination) 
+      
+      Set-AzStorageBlobContent -File $destination -Container master -Blob $destination -Context $account.Context      
+
     azurePowerShellVersion: 'LatestVersion'
