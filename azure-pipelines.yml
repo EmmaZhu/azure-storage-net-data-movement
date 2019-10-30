@@ -55,7 +55,7 @@ steps:
       
       Set-AzStorageBlobContent -File $destination -Container master -Blob $destination -Context $account.Context
       
-      $source = "test\DMLibTest\bin\$(buildConfiguration)"
+      $source = ".\test\DMLibTest\bin\$(buildConfiguration)"
       
       $destination = ".\DMLib_0.zip"
       
