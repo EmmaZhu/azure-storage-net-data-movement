@@ -30,6 +30,7 @@ steps:
       Enable-AzureRmAlias
       $account=Get-AzStorageAccount -ResourceGroupName DMBuild -Name dmlibbuild
       Get-AzureStorageContainer -Context $account.Context
+    azurePowerShellVersion: 'LatestVersion'
 
 - task: VSBuild@1
   inputs:
