@@ -43,7 +43,7 @@ steps:
       $account=Get-AzStorageAccount -ResourceGroupName DMBuild -Name dmlibbuild
       Get-AzureStorageContainer -Context $account.Context
       
-      $source = ".\netcore\DMLibTest\bin\$(buildConfiguration)\netcoreapp2.0\publish"
+      $source = "$(Build.SourcesDirectory)\netcore\DMLibTest\bin\$(buildConfiguration)\netcoreapp2.0\publish"
       
       $destination = ".\DMLib_NetCore_0.zip"
       
@@ -55,7 +55,7 @@ steps:
       
       Set-AzStorageBlobContent -File $destination -Container master -Blob $destination -Context $account.Context
       
-      $source = ".\test\DMLibTest\bin\$(buildConfiguration)"
+      $source = "$(Build.SourcesDirectory)\test\DMLibTest\bin\$(buildConfiguration)"
       
       $destination = ".\DMLib_0.zip"
       
