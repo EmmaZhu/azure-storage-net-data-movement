@@ -21,14 +21,15 @@ steps:
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
+
 - task: AzurePowerShell@4
   inputs:
     azureSubscription: 'Azure Storage DM Dev(a0d901ba-9956-4f7d-830c-2d7974c36666)'
     ScriptType: 'InlineScript'
     Inline: |
-      Import-Module Az.Storage
       Enable-AzureRmAlias
       Get-AzureStorageBlob -Container container
+    azurePowerShellVersion: 'LatestVersion'
 
 - task: VSBuild@1
   inputs:
