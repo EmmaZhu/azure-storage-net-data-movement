@@ -28,8 +28,8 @@ steps:
     ScriptType: 'InlineScript'
     Inline: |
       Enable-AzureRmAlias
-      Get-AzureStorageBlob -Container container
-    azurePowerShellVersion: 'LatestVersion'
+      $account=Get-AzStorageAccount -ResourceGroupName DMBuild -Name dmlibbuild
+      Get-AzureStorageContainer -Context $account.Context
 
 - task: VSBuild@1
   inputs:
