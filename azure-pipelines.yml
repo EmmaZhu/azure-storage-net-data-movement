@@ -23,20 +23,6 @@ steps:
     restoreSolution: '$(solution)'
 
 
-- task: AzurePowerShell@4
-  inputs:
-    azureSubscription: 'Azure Storage DM Dev(a0d901ba-9956-4f7d-830c-2d7974c36666)'
-    ScriptType: 'InlineScript'
-    Inline: |
-      Enable-AzureRmAlias
-      $account=Get-AzStorageAccount -ResourceGroupName DMBuild -Name dmlibbuild
-      Get-AzureStorageContainer -Context $account.Context
-      
-      $source="12$(buildConfiguration)"
-      
-      $source
-    azurePowerShellVersion: 'LatestVersion'
-
 - task: VSBuild@1
   inputs:
     solution: '$(solution)'
@@ -47,3 +33,37 @@ steps:
   inputs:
     filename: '.\netcore\Build.cmd'
     arguments: '$(buildConfiguration)'
+
+- task: AzurePowerShell@4
+  inputs:
+    azureSubscription: 'Azure Storage DM Dev(a0d901ba-9956-4f7d-830c-2d7974c36666)'
+    ScriptType: 'InlineScript'
+    Inline: |
+      Enable-AzureRmAlias
+      $account=Get-AzStorageAccount -ResourceGroupName DMBuild -Name dmlibbuild
+      Get-AzureStorageContainer -Context $account.Context
+      
+      $source = ".\netcore\DMLibTest\bin\$(buildConfiguration)\netcoreapp2.0\publish"
+      
+      $destination = ".\DMLib_NetCore_0.zip"
+      
+       If(Test-path $destination) {Remove-item $destination}
+      
+      Add-Type -assembly "system.io.compression.filesystem"
+      
+      [io.compression.zipfile]::CreateFromDirectory($Source, $destination) 
+      
+      Set-AzStorageBlobContent -File $destination -Container master -Blob $destination -Context $account.Context
+      
+      $source = "test\DMLibTest\bin\$(buildConfiguration)"
+      
+      $destination = ".\DMLib_0.zip"
+      
+       If(Test-path $destination) {Remove-item $destination}
+      
+      Add-Type -assembly "system.io.compression.filesystem"
+      
+      [io.compression.zipfile]::CreateFromDirectory($Source, $destination) 
+      
+      Set-AzStorageBlobContent -File $destination -Container master -Blob $destination -Context $account.Context
+    azurePowerShellVersion: 'LatestVersion'
