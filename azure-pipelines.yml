@@ -13,7 +13,6 @@ variables:
   solution: 'DataMovement.sln'
   solution1: 'DataMovement_k.sln'
   buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
 
 steps:
 - task: NuGetToolInstaller@1
@@ -22,6 +21,9 @@ steps:
   inputs:
     restoreSolution: '$(solution)'
 
+- task: PowerShell@2
+  inputs:
+    filePath: '.\tools\scripts\InjectBuildNumber.ps1'
 
 - task: VSBuild@1
   inputs:
