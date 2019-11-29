@@ -26,13 +26,24 @@ steps:
 - task: VSBuild@1
   inputs:
     solution: '$(solution)'
-    msbuildArgs: '/t:Rebuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
+    msbuildArgs: '/t:Rebuild /p:Configuration=Debug /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true '
     platform: '$(buildPlatform)'
 
 - task: BatchScript@1
   inputs:
     filename: '.\netcore\Build.cmd'
-    arguments: '$(buildConfiguration)'
+    arguments: 'Debug'
+  
+- task: VSBuild@1
+  inputs:
+    solution: '$(solution)'
+    msbuildArgs: '/t:Rebuild /p:Configuration=Release /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true '
+    platform: '$(buildPlatform)'
+
+- task: BatchScript@1
+  inputs:
+    filename: '.\netcore\Build.cmd'
+    arguments: 'Release'
 
 - task: AzurePowerShell@4
   inputs:
@@ -53,7 +64,7 @@ steps:
       $account=Get-AzStorageAccount -ResourceGroupName DMBuild -Name dmlibbuild
       Get-AzureStorageContainer -Context $account.Context
 
-      $source = "$(Build.SourcesDirectory)\test"
+      $source = "$(Build.SourcesDirectory)\test\DMLibTest\bin"
       
       $destination = ".\DMLib_0.zip"
       
@@ -65,7 +76,7 @@ steps:
       
       Set-AzStorageBlobContent -File $destination -Container master -Blob $destination -Context $account.Context
 
-      $source = "$(Build.SourcesDirectory)\netcore\"
+      $source = "$(Build.SourcesDirectory)\netcore\DMLibTest\bin"
       
       $destination = ".\DMLib_NetCore_0.zip"
       
