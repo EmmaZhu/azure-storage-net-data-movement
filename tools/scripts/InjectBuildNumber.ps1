@@ -2,7 +2,7 @@ Function UpdateVersionInFile
 {
     Param ([string]$path, [string]$prefix, [string]$suffix, [int]$verNum)
 
-    if ($env:BUILD_NUMBER)
+    if ($(Build.BuildId))
     {
 
         $lines = Get-Content $path -Encoding UTF8
