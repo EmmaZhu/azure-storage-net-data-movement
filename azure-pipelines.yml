@@ -24,6 +24,7 @@ steps:
 - task: PowerShell@2
   inputs:
     filePath: '.\tools\scripts\InjectBuildNumber.ps1'
+    arguments: '$(Build.BuildId)'
 
 - task: VSBuild@1
   inputs:
