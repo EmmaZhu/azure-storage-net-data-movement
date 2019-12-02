@@ -1,8 +1,10 @@
+param([Int32]$buildId=0)
+
 Function UpdateVersionInFile
 {
     Param ([string]$path, [string]$prefix, [string]$suffix, [int]$verNum)
 
-    if ($(Build.BuildId))
+    if ($buildId -ne 0)
     {
 
         $lines = Get-Content $path -Encoding UTF8
@@ -12,7 +14,7 @@ Function UpdateVersionInFile
             {
                 $num = $_.Substring($prefix.Length, $_.Length - $prefix.Length - $suffix.Length)
                 $num_p = $num.Split('.')
-                $new_num = [System.String]::Join('.', $num_p[0 .. ($verNum-2)] + $env:BUILD_NUMBER)
+                $new_num = [System.String]::Join('.', $num_p[0 .. ($verNum-2)] + $buildId)
                 return $prefix + $new_num + $suffix
             }
             else
