@@ -57,8 +57,6 @@ namespace Microsoft.Azure.Storage.DataMovement.TransferControllers
             if (this.sourceBlob.BlobType == BlobType.PageBlob)
             {
                 this.sourcePageBlob = this.sourceBlob as CloudPageBlob;
-                this.pagesToCopy = new List<long>();
-                this.pageListBag = new ConcurrentBag<List<long>>();
             }
 
             if (0 == this.TransferJob.CheckPoint.EntryTransferOffset)
@@ -119,6 +117,11 @@ namespace Microsoft.Azure.Storage.DataMovement.TransferControllers
                         this.state = State.Copy;
                     }
                 }
+                else if ((this.totalLength - this.nextRangesSpanOffset) <= TransferManager.Configurations.BlockSize)
+                {
+                    this.InitializeCopyStatus();
+                    this.state = State.Copy;
+                }
                 else
                 {
                     int rangeSpanCount = (int)Math.Ceiling(((double)(this.totalLength - this.nextRangesSpanOffset)) / Constants.PageRangesSpanSize);
@@ -136,6 +139,8 @@ namespace Microsoft.Azure.Storage.DataMovement.TransferControllers
         protected override async Task DoPreCopyAsync()
         {
             this.hasWork = false;
+            this.pagesToCopy = new List<long>();
+            this.pageListBag = new ConcurrentBag<List<long>>();
             long rangeSpanOffset = this.nextRangesSpanOffset;
             long rangeSpanLength = Math.Min(Constants.PageRangesSpanSize, this.totalLength - rangeSpanOffset);
 
