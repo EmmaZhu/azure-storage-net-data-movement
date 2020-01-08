@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Microsoft.WindowsAzure.Storage.DataMovement</RootNamespace>
-    <AssemblyName>Microsoft.WindowsAzure.Storage.DataMovement</AssemblyName>
+    <AssemblyName>Microsoft.WindowsAzure.Storage.DataMovement.Hybrid_2019_03_01</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -29,7 +29,7 @@
     <CodeAnalysisRuleSet>..\tools\analysis\fxcop\azure-storage-dm.ruleset</CodeAnalysisRuleSet>
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
-    <DocumentationFile>bin\Debug\Microsoft.WindowsAzure.Storage.DataMovement.XML</DocumentationFile>
+    <DocumentationFile>bin\Debug\Microsoft.WindowsAzure.Storage.DataMovement.Hybrid_2019_03_01.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -43,7 +43,7 @@
     <RunCodeAnalysis>true</RunCodeAnalysis>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
-    <DocumentationFile>bin\Release\Microsoft.WindowsAzure.Storage.DataMovement.XML</DocumentationFile>
+    <DocumentationFile>bin\Release\Microsoft.WindowsAzure.Storage.DataMovement.Hybrid_2019_03_01.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -58,8 +58,8 @@
       <HintPath>..\packages\Microsoft.WindowsAzure.ConfigurationManager.1.8.0.0\lib\net35-full\Microsoft.WindowsAzure.Configuration.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.WindowsAzure.Storage, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\WindowsAzure.Storage.9.0.0\lib\net45\Microsoft.WindowsAzure.Storage.dll</HintPath>
+    <Reference Include="Microsoft.WindowsAzure.Storage.Hybrid_2019_03_01">
+      <HintPath>..\packages\lib\net45\Microsoft.WindowsAzure.Storage.Hybrid_2019_03_01.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
