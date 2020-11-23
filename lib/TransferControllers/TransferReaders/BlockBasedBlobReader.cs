@@ -421,6 +421,8 @@ namespace Microsoft.Azure.Storage.DataMovement.TransferControllers
 
         private void SetBlockDownloadHasWork()
         {
+            this.isStateSwitchedInternal = false;
+
             if (this.HasWork)
             {
                 return;
