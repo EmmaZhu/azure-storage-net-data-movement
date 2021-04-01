@@ -8,7 +8,7 @@ namespace Microsoft.Azure.Storage.DataMovement.TransferEnumerators
 {
     using System;
     using Microsoft.Azure.Storage.DataMovement;
-    using Microsoft.Azure.Storage.File;
+    using Microsoft.WindowsAzure.Storage.File;
 
     /// <summary>
     /// AzureFileEntry class to represent a single transfer entry on Azure file service.

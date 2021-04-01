@@ -16,7 +16,8 @@ namespace Microsoft.Azure.Storage.DataMovement.TransferControllers
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
-    using Microsoft.Azure.Storage.Blob;
+    using Microsoft.WindowsAzure.Storage;
+    using Microsoft.WindowsAzure.Storage.Blob;
 
     internal sealed class BlockBlobWriter : TransferReaderWriterBase
     {
@@ -504,7 +505,7 @@ namespace Microsoft.Azure.Storage.DataMovement.TransferControllers
             if (!string.IsNullOrEmpty(this.blockBlob.Properties.CacheControl))
             {
                 operationContext.UserHeaders.Add(
-                    Shared.Protocol.Constants.HeaderConstants.BlobCacheControlHeader,
+                    WindowsAzure.Storage.Shared.Protocol.Constants.HeaderConstants.BlobCacheControlHeader,
                     this.blockBlob.Properties.CacheControl);
 
                 this.blockBlob.Properties.CacheControl = null;
@@ -513,7 +514,7 @@ namespace Microsoft.Azure.Storage.DataMovement.TransferControllers
             if (!string.IsNullOrEmpty(this.blockBlob.Properties.ContentEncoding))
             {
                 operationContext.UserHeaders.Add(
-                    Shared.Protocol.Constants.HeaderConstants.BlobContentEncodingHeader,
+                    WindowsAzure.Storage.Shared.Protocol.Constants.HeaderConstants.BlobContentEncodingHeader,
                     this.blockBlob.Properties.ContentEncoding);
 
                 this.blockBlob.Properties.ContentEncoding = null;
@@ -522,7 +523,7 @@ namespace Microsoft.Azure.Storage.DataMovement.TransferControllers
             if (!string.IsNullOrEmpty(this.blockBlob.Properties.ContentLanguage))
             {
                 operationContext.UserHeaders.Add(
-                    Shared.Protocol.Constants.HeaderConstants.BlobContentLanguageHeader,
+                    WindowsAzure.Storage.Shared.Protocol.Constants.HeaderConstants.BlobContentLanguageHeader,
                     this.blockBlob.Properties.ContentLanguage);
 
                 this.blockBlob.Properties.ContentLanguage = null;
@@ -531,7 +532,7 @@ namespace Microsoft.Azure.Storage.DataMovement.TransferControllers
             if (!string.IsNullOrEmpty(this.blockBlob.Properties.ContentType))
             {
                 operationContext.UserHeaders.Add(
-                    Shared.Protocol.Constants.HeaderConstants.BlobContentTypeHeader,
+                    WindowsAzure.Storage.Shared.Protocol.Constants.HeaderConstants.BlobContentTypeHeader,
                     this.blockBlob.Properties.ContentType);
 
                 this.blockBlob.Properties.ContentType = null;
@@ -550,29 +551,29 @@ namespace Microsoft.Azure.Storage.DataMovement.TransferControllers
             {
                 this.blockBlob.Properties.ContentMD5 = providedMD5;
 
-                if (operationContext.UserHeaders.ContainsKey(Shared.Protocol.Constants.HeaderConstants.BlobCacheControlHeader))
+                if (operationContext.UserHeaders.ContainsKey(WindowsAzure.Storage.Shared.Protocol.Constants.HeaderConstants.BlobCacheControlHeader))
                 {
                     this.blockBlob.Properties.CacheControl =
-                        operationContext.UserHeaders[Shared.Protocol.Constants.HeaderConstants.BlobCacheControlHeader];
+                        operationContext.UserHeaders[WindowsAzure.Storage.Shared.Protocol.Constants.HeaderConstants.BlobCacheControlHeader];
                 }
 
-                if (operationContext.UserHeaders.ContainsKey(Shared.Protocol.Constants.HeaderConstants.BlobContentEncodingHeader))
+                if (operationContext.UserHeaders.ContainsKey(WindowsAzure.Storage.Shared.Protocol.Constants.HeaderConstants.BlobContentEncodingHeader))
                 {
                     this.blockBlob.Properties.ContentEncoding =
-                        operationContext.UserHeaders[Shared.Protocol.Constants.HeaderConstants.BlobContentEncodingHeader];
+                        operationContext.UserHeaders[WindowsAzure.Storage.Shared.Protocol.Constants.HeaderConstants.BlobContentEncodingHeader];
                 }
 
-                if (operationContext.UserHeaders.ContainsKey(Shared.Protocol.Constants.HeaderConstants.BlobContentLanguageHeader))
+                if (operationContext.UserHeaders.ContainsKey(WindowsAzure.Storage.Shared.Protocol.Constants.HeaderConstants.BlobContentLanguageHeader))
                 {
                     this.blockBlob.Properties.ContentLanguage =
                         operationContext.UserHeaders[
-                            Shared.Protocol.Constants.HeaderConstants.BlobContentLanguageHeader];
+                            WindowsAzure.Storage.Shared.Protocol.Constants.HeaderConstants.BlobContentLanguageHeader];
                 }
 
-                if (operationContext.UserHeaders.ContainsKey(Shared.Protocol.Constants.HeaderConstants.BlobContentTypeHeader))
+                if (operationContext.UserHeaders.ContainsKey(WindowsAzure.Storage.Shared.Protocol.Constants.HeaderConstants.BlobContentTypeHeader))
                 {
                     this.blockBlob.Properties.ContentType =
-                        operationContext.UserHeaders[Shared.Protocol.Constants.HeaderConstants.BlobContentTypeHeader];
+                        operationContext.UserHeaders[WindowsAzure.Storage.Shared.Protocol.Constants.HeaderConstants.BlobContentTypeHeader];
                 }
 
                 await this.blockBlob.SetPropertiesAsync(

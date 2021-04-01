@@ -9,9 +9,10 @@ namespace Microsoft.Azure.Storage.DataMovement
     using System.Diagnostics;
     using System.Globalization;
     using System.Net;
-    using Microsoft.Azure.Storage.Blob;
-    using Microsoft.Azure.Storage.File;
-    using Microsoft.Azure.Storage.RetryPolicies;
+    using Microsoft.WindowsAzure.Storage;
+    using Microsoft.WindowsAzure.Storage.Blob;
+    using Microsoft.WindowsAzure.Storage.File;
+    using Microsoft.WindowsAzure.Storage.RetryPolicies;
 
     /// <summary>
     /// Defines default RequestOptions for every type of transfer job.

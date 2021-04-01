@@ -15,9 +15,10 @@ namespace Microsoft.Azure.Storage.DataMovement
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
-    using Microsoft.Azure.Storage.Blob;
+    using Microsoft.WindowsAzure.Storage.Blob;
     using Microsoft.Azure.Storage.DataMovement.TransferEnumerators;
-    using Microsoft.Azure.Storage.File;
+    using Microsoft.WindowsAzure.Storage.File;
+    using Microsoft.WindowsAzure.Storage;
 
     /// <summary>
     /// Represents a sub-directory transfer under a hierarchy directory transfer.
@@ -128,6 +129,8 @@ namespace Microsoft.Azure.Storage.DataMovement
             await Task.Yield();
 
             this.CreateDestinationDirectory(cancellationToken);
+
+            this.baseDirectoryTransfer.ProgressTracker.AddNumberOfDirectoriesCreated(1);
 
             var enumerator = this.transferEnumerator.EnumerateLocation(cancellationToken).GetEnumerator();
 

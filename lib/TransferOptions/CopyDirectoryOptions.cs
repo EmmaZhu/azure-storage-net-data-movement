@@ -5,7 +5,7 @@
 //------------------------------------------------------------------------------
 namespace Microsoft.Azure.Storage.DataMovement
 {
-    using Microsoft.Azure.Storage.Blob;
+    using Microsoft.WindowsAzure.Storage.Blob;
 
     /// <summary>
     /// Represents a set of options that may be specified for copy directory operation

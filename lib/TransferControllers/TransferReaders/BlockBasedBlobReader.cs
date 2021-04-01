@@ -14,7 +14,8 @@ namespace Microsoft.Azure.Storage.DataMovement.TransferControllers
     using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
-    using Microsoft.Azure.Storage.Blob;
+    using Microsoft.WindowsAzure.Storage;
+    using Microsoft.WindowsAzure.Storage.Blob;
 
     internal sealed class BlockBasedBlobReader : TransferReaderWriterBase
     {

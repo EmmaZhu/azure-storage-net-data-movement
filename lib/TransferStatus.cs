@@ -27,7 +27,8 @@ namespace Microsoft.Azure.Storage.DataMovement
         /// <param name="numberOfFilesTransferred">Number of files that have been transferred.</param>
         /// <param name="numberOfFilesSkipped">Number of files that are skipped to be transferred.</param>
         /// <param name="numberOfFilesFailed">Number of files that are failed to be transferred.</param>
-        public TransferStatus(long bytesTransferred, long numberOfFilesTransferred, long numberOfFilesSkipped, long numberOfFilesFailed)
+        /// <param name="numberOfDirectoriesCreated">Number of directories that are created.</param>
+        public TransferStatus(long bytesTransferred, long numberOfFilesTransferred, long numberOfFilesSkipped, long numberOfFilesFailed, long numberOfDirectoriesCreated)
         {
             if (bytesTransferred < 0)
             {
@@ -45,11 +46,16 @@ namespace Microsoft.Azure.Storage.DataMovement
             {
                 throw new ArgumentOutOfRangeException(nameof(numberOfFilesFailed));
             }
+            if (numberOfDirectoriesCreated < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(numberOfDirectoriesCreated));
+            }
 
             this.BytesTransferred = bytesTransferred;
             this.NumberOfFilesTransferred = numberOfFilesTransferred;
             this.NumberOfFilesSkipped = numberOfFilesSkipped;
             this.NumberOfFilesFailed = numberOfFilesFailed;
+            this.NumberOfDirectoriesCreated = numberOfDirectoriesCreated;
         }
 
         /// <summary>
@@ -83,6 +89,15 @@ namespace Microsoft.Azure.Storage.DataMovement
         /// Gets the number of files that are failed to be transferred.
         /// </summary>
         public long NumberOfFilesFailed
+        {
+            get;
+            internal set;
+        }
+
+        /// <summary>
+        /// Gets the number of directories created.
+        /// </summary>
+        public long NumberOfDirectoriesCreated
         {
             get;
             internal set;

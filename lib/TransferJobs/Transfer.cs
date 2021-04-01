@@ -12,7 +12,7 @@ namespace Microsoft.Azure.Storage.DataMovement
     using System.Runtime.Serialization;
     using System.Threading;
     using System.Threading.Tasks;
-    using Microsoft.Azure.Storage.Blob;
+    using Microsoft.WindowsAzure.Storage.Blob;
 
     /// <summary>
     /// Base class for transfer operation.

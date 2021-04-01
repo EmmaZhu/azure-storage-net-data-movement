@@ -8,7 +8,7 @@ namespace Microsoft.Azure.Storage.DataMovement.TransferEnumerators
 {
     using System;
     using System.Runtime.Serialization;
-    using Microsoft.Azure.Storage.Blob;
+    using Microsoft.WindowsAzure.Storage.Blob;
 
 #if BINARY_SERIALIZATION
     [Serializable]

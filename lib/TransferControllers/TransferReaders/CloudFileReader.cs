@@ -12,7 +12,7 @@ namespace Microsoft.Azure.Storage.DataMovement.TransferControllers
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
-    using Microsoft.Azure.Storage.File;
+    using Microsoft.WindowsAzure.Storage.File;
 
     class CloudFileReader : RangeBasedReader
     {

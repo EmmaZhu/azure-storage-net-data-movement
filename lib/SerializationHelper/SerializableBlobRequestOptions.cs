@@ -9,7 +9,8 @@ namespace Microsoft.Azure.Storage.DataMovement.SerializationHelper
     using System;
     using System.Diagnostics;
     using System.Runtime.Serialization;
-    using Microsoft.Azure.Storage.Blob;
+    using Microsoft.WindowsAzure.Storage;
+    using Microsoft.WindowsAzure.Storage.Blob;
 
 #if BINARY_SERIALIZATION
     [Serializable]

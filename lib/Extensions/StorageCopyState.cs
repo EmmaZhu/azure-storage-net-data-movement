@@ -7,7 +7,7 @@
 namespace Microsoft.Azure.Storage.DataMovement.Extensions
 {
     using System;
-    using Microsoft.Azure.Storage.Blob;
+    using Microsoft.WindowsAzure.Storage.Blob;
 
     internal enum StorageCopyStatus
     {
@@ -35,7 +35,7 @@ namespace Microsoft.Azure.Storage.DataMovement.Extensions
 
     internal class StorageCopyState
     {
-        public StorageCopyState(Microsoft.Azure.Storage.Blob.CopyState blobCopyState)
+        public StorageCopyState(Microsoft.WindowsAzure.Storage.Blob.CopyState blobCopyState)
         {
             this.CopyId = blobCopyState.CopyId;
             this.SetStatus(blobCopyState.Status);
@@ -45,58 +45,23 @@ namespace Microsoft.Azure.Storage.DataMovement.Extensions
             this.StatusDescription = blobCopyState.StatusDescription;
         }
 
-        public StorageCopyState(Microsoft.Azure.Storage.File.CopyState fileCopyState)
-        {
-            this.CopyId = fileCopyState.CopyId;
-            this.SetStatus(fileCopyState.Status);
-            this.Source = fileCopyState.Source;
-            this.BytesCopied = fileCopyState.BytesCopied;
-            this.TotalBytes = fileCopyState.TotalBytes;
-            this.StatusDescription = fileCopyState.StatusDescription;
-        }
-
-        private void SetStatus(Microsoft.Azure.Storage.Blob.CopyStatus blobCopyStatus)
+        private void SetStatus(Microsoft.WindowsAzure.Storage.Blob.CopyStatus blobCopyStatus)
         {
             switch (blobCopyStatus)
             {
-                case Blob.CopyStatus.Invalid:
+                case Microsoft.WindowsAzure.Storage.Blob.CopyStatus.Invalid:
                     this.Status = StorageCopyStatus.Invalid;
                     break;
-                case Blob.CopyStatus.Pending:
+                case Microsoft.WindowsAzure.Storage.Blob.CopyStatus.Pending:
                     this.Status = StorageCopyStatus.Pending;
                     break;
-                case Blob.CopyStatus.Success:
+                case Microsoft.WindowsAzure.Storage.Blob.CopyStatus.Success:
                     this.Status = StorageCopyStatus.Success;
                     break;
-                case Blob.CopyStatus.Aborted:
+                case Microsoft.WindowsAzure.Storage.Blob.CopyStatus.Aborted:
                     this.Status = StorageCopyStatus.Aborted;
                     break;
-                case Blob.CopyStatus.Failed:
-                    this.Status = StorageCopyStatus.Failed;
-                    break;
-                default:
-                    this.Status = StorageCopyStatus.Invalid;
-                    break;
-            }
-        }
-
-        private void SetStatus(Microsoft.Azure.Storage.File.CopyStatus fileCopyStatus)
-        {
-            switch (fileCopyStatus)
-            {
-                case File.CopyStatus.Invalid:
-                    this.Status = StorageCopyStatus.Invalid;
-                    break;
-                case File.CopyStatus.Pending:
-                    this.Status = StorageCopyStatus.Pending;
-                    break;
-                case File.CopyStatus.Success:
-                    this.Status = StorageCopyStatus.Success;
-                    break;
-                case File.CopyStatus.Aborted:
-                    this.Status = StorageCopyStatus.Aborted;
-                    break;
-                case File.CopyStatus.Failed:
+                case Microsoft.WindowsAzure.Storage.Blob.CopyStatus.Failed:
                     this.Status = StorageCopyStatus.Failed;
                     break;
                 default:

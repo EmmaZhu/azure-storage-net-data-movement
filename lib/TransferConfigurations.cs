@@ -9,7 +9,7 @@ namespace Microsoft.Azure.Storage.DataMovement
     using System.Globalization;
     using System.Reflection;
     using System.Runtime.InteropServices;
-    using ClientLibraryConstants = Microsoft.Azure.Storage.Shared.Protocol.Constants;
+    using ClientLibraryConstants = Microsoft.WindowsAzure.Storage.Shared.Protocol.Constants;
 
     /// <summary>
     /// TransferConfigurations class.

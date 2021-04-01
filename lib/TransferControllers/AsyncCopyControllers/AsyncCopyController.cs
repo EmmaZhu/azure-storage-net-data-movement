@@ -12,10 +12,11 @@ namespace Microsoft.Azure.Storage.DataMovement.TransferControllers
     using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
-    using Microsoft.Azure.Storage.Blob;
-    using Microsoft.Azure.Storage.Blob.Protocol;
+    using Microsoft.WindowsAzure.Storage.Blob;
+    using Microsoft.WindowsAzure.Storage.Blob.Protocol;
     using Microsoft.Azure.Storage.DataMovement.Extensions;
-    using Microsoft.Azure.Storage.File;
+    using Microsoft.WindowsAzure.Storage.File;
+    using Microsoft.WindowsAzure.Storage;
 
     internal abstract class AsyncCopyController : TransferControllerBase
     {

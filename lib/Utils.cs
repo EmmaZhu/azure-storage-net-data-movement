@@ -13,9 +13,10 @@ namespace Microsoft.Azure.Storage.DataMovement
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
-    using Microsoft.Azure.Storage.Auth;
-    using Microsoft.Azure.Storage.Blob;
-    using Microsoft.Azure.Storage.File;
+    using Microsoft.WindowsAzure.Storage;
+    using Microsoft.WindowsAzure.Storage.Auth;
+    using Microsoft.WindowsAzure.Storage.Blob;
+    using Microsoft.WindowsAzure.Storage.File;
 
     /// <summary>
     /// Class for various utils.

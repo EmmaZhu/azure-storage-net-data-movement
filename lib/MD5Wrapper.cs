@@ -9,6 +9,7 @@ namespace Microsoft.Azure.Storage.DataMovement
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Security.Cryptography;
+    using Microsoft.WindowsAzure.Storage;
 
     internal class MD5Wrapper : IDisposable
     {

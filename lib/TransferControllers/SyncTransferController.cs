@@ -11,7 +11,7 @@ namespace Microsoft.Azure.Storage.DataMovement.TransferControllers
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
-    using Microsoft.Azure.Storage.Blob;
+    using Microsoft.WindowsAzure.Storage.Blob;
 
     internal class SyncTransferController : TransferControllerBase
     {

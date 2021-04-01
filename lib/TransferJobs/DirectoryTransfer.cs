@@ -14,9 +14,10 @@ namespace Microsoft.Azure.Storage.DataMovement
     using System.Runtime.Serialization;
     using System.Threading;
     using System.Threading.Tasks;
-    using Microsoft.Azure.Storage.Blob;
+    using Microsoft.WindowsAzure.Storage.Blob;
     using Microsoft.Azure.Storage.DataMovement.TransferEnumerators;
-    using Microsoft.Azure.Storage.File;
+    using Microsoft.WindowsAzure.Storage.File;
+    using Microsoft.WindowsAzure.Storage;
 
     /// <summary>
     /// Represents a directory object transfer operation.
@@ -303,16 +304,16 @@ namespace Microsoft.Azure.Storage.DataMovement
                         CloudBlob blob = null;
                         switch (destBlobType)
                         {
-                            case Blob.BlobType.BlockBlob:
-                            case Blob.BlobType.Unspecified:
+                            case Microsoft.WindowsAzure.Storage.Blob.BlobType.BlockBlob:
+                            case Microsoft.WindowsAzure.Storage.Blob.BlobType.Unspecified:
                                 blob = blobDirLocation.BlobDirectory.GetBlockBlobReference(destRelativePath);
                                 break;
 
-                            case Blob.BlobType.PageBlob:
+                            case Microsoft.WindowsAzure.Storage.Blob.BlobType.PageBlob:
                                 blob = blobDirLocation.BlobDirectory.GetPageBlobReference(destRelativePath);
                                 break;
 
-                            case Blob.BlobType.AppendBlob:
+                            case Microsoft.WindowsAzure.Storage.Blob.BlobType.AppendBlob:
                                 blob = blobDirLocation.BlobDirectory.GetAppendBlobReference(destRelativePath);
                                 break;
                         }

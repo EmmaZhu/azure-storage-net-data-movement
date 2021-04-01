@@ -12,7 +12,7 @@ namespace Microsoft.Azure.Storage.DataMovement.TransferEnumerators
     using System.Globalization;
     using System.Threading;
     using Microsoft.Azure.Storage.DataMovement;
-    using Microsoft.Azure.Storage.File;
+    using Microsoft.WindowsAzure.Storage.File;
 
     /// <summary>
     /// Transfer enumerator for Azure file storage.

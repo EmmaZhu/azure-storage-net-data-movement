@@ -14,6 +14,7 @@ namespace Microsoft.Azure.Storage.DataMovement.TransferControllers
     using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
+    using Microsoft.WindowsAzure.Storage;
 
     internal abstract class RangeBasedReader : TransferReaderWriterBase
     {

@@ -10,11 +10,11 @@ namespace Microsoft.Azure.Storage.DataMovement.TransferControllers
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
-    using Microsoft.Azure.Storage;
-    using Microsoft.Azure.Storage.Blob;
+    using Microsoft.WindowsAzure.Storage;
+    using Microsoft.WindowsAzure.Storage.Blob;
     using Microsoft.Azure.Storage.DataMovement;
     using Microsoft.Azure.Storage.DataMovement.Extensions;
-    using Microsoft.Azure.Storage.File;
+    using Microsoft.WindowsAzure.Storage.File;
 
     /// <summary>
     /// Azure file asynchronous copy.

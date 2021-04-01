@@ -8,7 +8,8 @@ namespace Microsoft.Azure.Storage.DataMovement.SerializationHelper
     using System;
     using System.Diagnostics;
     using System.Runtime.Serialization;
-    using Microsoft.Azure.Storage.File;
+    using Microsoft.WindowsAzure.Storage;
+    using Microsoft.WindowsAzure.Storage.File;
 
     /// <summary>
     /// Define class to serialize FileRequestOptions instance.

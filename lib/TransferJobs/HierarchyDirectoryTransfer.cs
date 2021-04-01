@@ -17,9 +17,9 @@ namespace Microsoft.Azure.Storage.DataMovement
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
-    using Microsoft.Azure.Storage.Blob;
+    using Microsoft.WindowsAzure.Storage.Blob;
     using Microsoft.Azure.Storage.DataMovement.TransferEnumerators;
-    using Microsoft.Azure.Storage.File;
+    using Microsoft.WindowsAzure.Storage.File;
 
     /// <summary>
     /// Represents a hierarchy directory transfer operation.

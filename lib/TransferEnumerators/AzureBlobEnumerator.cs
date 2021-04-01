@@ -11,7 +11,7 @@ namespace Microsoft.Azure.Storage.DataMovement.TransferEnumerators
     using System.Diagnostics;
     using System.Globalization;
     using System.Threading;
-    using Microsoft.Azure.Storage.Blob;
+    using Microsoft.WindowsAzure.Storage.Blob;
     using Microsoft.Azure.Storage.DataMovement;
 
     /// <summary>

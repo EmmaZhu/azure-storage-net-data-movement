@@ -6,9 +6,9 @@
 
 namespace Microsoft.Azure.Storage.DataMovement
 {
-    using Microsoft.Azure.Storage.Blob;
+    using Microsoft.WindowsAzure.Storage.Blob;
     using Microsoft.Azure.Storage.DataMovement.TransferEnumerators;
-    using Microsoft.Azure.Storage.File;
+    using Microsoft.WindowsAzure.Storage.File;
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
@@ -19,6 +19,7 @@ namespace Microsoft.Azure.Storage.DataMovement
     using System.Runtime.Serialization;
     using System.Threading;
     using System.Threading.Tasks;
+    using Microsoft.WindowsAzure.Storage;
 
     /// <summary>
     /// Represents a flat directory transfer operation.

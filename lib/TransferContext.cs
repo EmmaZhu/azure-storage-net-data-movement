@@ -8,6 +8,7 @@ namespace Microsoft.Azure.Storage.DataMovement
     using System;
     using System.IO;
     using System.Threading.Tasks;
+    using Microsoft.WindowsAzure.Storage;
 
     /// <summary>
     /// Represents the context for a transfer, and provides additional runtime information about its execution.
@@ -87,7 +88,7 @@ namespace Microsoft.Azure.Storage.DataMovement
         /// <summary>
         /// Gets or sets the logging level to be used for the related transfer operation.
         /// </summary>
-        /// <value>A value of type <see cref="Microsoft.Azure.Storage.LogLevel"/> that specifies which events are logged for the related transfer operation.</value>
+        /// <value>A value of type <see cref="Microsoft.WindowsAzure.Storage.LogLevel"/> that specifies which events are logged for the related transfer operation.</value>
         public LogLevel LogLevel
         {
             get;

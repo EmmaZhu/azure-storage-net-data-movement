@@ -12,9 +12,9 @@ namespace Microsoft.Azure.Storage.DataMovement
     using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
-    using Microsoft.Azure.Storage.Blob;
+    using Microsoft.WindowsAzure.Storage.Blob;
     using Microsoft.Azure.Storage.DataMovement.TransferEnumerators;
-    using Microsoft.Azure.Storage.File;
+    using Microsoft.WindowsAzure.Storage.File;
     using TransferKey = System.Tuple<TransferLocation, TransferLocation>;
 
     /// <summary>
@@ -1506,7 +1506,8 @@ namespace Microsoft.Azure.Storage.DataMovement
                 BytesTransferred = progress.BytesTransferred,
                 NumberOfFilesTransferred = progress.NumberOfFilesTransferred,
                 NumberOfFilesSkipped = progress.NumberOfFilesSkipped,
-                NumberOfFilesFailed = progress.NumberOfFilesFailed
+                NumberOfFilesFailed = progress.NumberOfFilesFailed,
+                NumberOfDirectoriesCreated = progress.NumberOfDirectoriesCreated
             };
         }
     }

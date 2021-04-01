@@ -14,6 +14,7 @@ namespace Microsoft.Azure.Storage.DataMovement
     using System.Threading.Tasks;
 
     using Microsoft.Azure.Storage.DataMovement.TransferControllers;
+    using Microsoft.WindowsAzure.Storage;
 
     /// <summary>
     /// TransferScheduler class, used for  transferring Microsoft Azure

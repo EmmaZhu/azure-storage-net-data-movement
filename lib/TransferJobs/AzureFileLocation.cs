@@ -9,9 +9,10 @@ namespace Microsoft.Azure.Storage.DataMovement
     using System;
     using System.Net;
     using System.Runtime.Serialization;
-    using Microsoft.Azure.Storage.Auth;
+    using Microsoft.WindowsAzure.Storage.Auth;
     using Microsoft.Azure.Storage.DataMovement.SerializationHelper;
-    using Microsoft.Azure.Storage.File;
+    using Microsoft.WindowsAzure.Storage.File;
+    using Microsoft.WindowsAzure.Storage;
 
 #if BINARY_SERIALIZATION
     [Serializable]

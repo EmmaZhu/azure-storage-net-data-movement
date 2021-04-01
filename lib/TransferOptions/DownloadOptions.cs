@@ -3,6 +3,8 @@
 //    Copyright (c) Microsoft Corporation
 // </copyright>
 //------------------------------------------------------------------------------
+using Microsoft.WindowsAzure.Storage;
+
 namespace Microsoft.Azure.Storage.DataMovement
 {
     /// <summary>

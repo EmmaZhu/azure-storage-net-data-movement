@@ -12,7 +12,8 @@ namespace Microsoft.Azure.Storage.DataMovement.TransferControllers
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
-    using Microsoft.Azure.Storage.Blob;
+    using Microsoft.WindowsAzure.Storage;
+    using Microsoft.WindowsAzure.Storage.Blob;
 
     internal sealed class PageBlobReader : RangeBasedReader
     {

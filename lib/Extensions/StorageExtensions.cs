@@ -7,9 +7,9 @@
 namespace Microsoft.Azure.Storage.DataMovement
 {
     using System;
-    using Microsoft.Azure.Storage.Auth;
-    using Microsoft.Azure.Storage.Blob;
-    using Microsoft.Azure.Storage.File;
+    using Microsoft.WindowsAzure.Storage.Auth;
+    using Microsoft.WindowsAzure.Storage.Blob;
+    using Microsoft.WindowsAzure.Storage.File;
 
     /// <summary>
     /// Extension methods for CloudBlobs for use with BlobTransfer.
